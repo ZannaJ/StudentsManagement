@@ -10,7 +10,7 @@ public class DbConnection {
 
         try{
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/students", User.USERNAME.getValue(), User.PASSWORD.getValue());
-            System.out.println("Database Connected Successfully.");
+
 
         }catch (SQLException e) {
 //            System.out.println("Unable to connect to database");

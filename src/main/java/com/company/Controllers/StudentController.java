@@ -25,6 +25,7 @@ public class StudentController {
 
 
         try {
+            // INSERT INTO students(name, age) VALUES('enakn', 23)
             ps = DbConnection.getConnection().prepareStatement("INSERT INTO students(name, age)" + "VALUES('" + name + "', " + age + ")");
             ps.execute();
             return true;
@@ -36,6 +37,9 @@ public class StudentController {
 
     }
     public static Student getStudentById() {
+
+        // Prompt the user to enter the id of the student they want to retrieve.
+
         System.out.println("Enter the id of the student: ");
         int id = scanner .nextInt();
 
@@ -45,8 +49,19 @@ public class StudentController {
 
             int studentId, age;
             String name;
+            Student student = new Student();
 
-            return new Student(rs.getInt("id"), rs.getString("name"), rs.getInt("age"));
+            while (rs.next()) {
+                studentId = rs.getInt("id");
+                name = rs.getString("name");
+                age = rs.getInt("age");
+                student.setId(studentId);
+                student.setName(name);
+                student.setAge(age);
+
+            }
+                return student;
+//            return new Student(id, name, age);
 
 
 
