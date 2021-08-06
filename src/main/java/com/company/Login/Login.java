@@ -21,7 +21,7 @@ public class Login {
         String password = scanner.next();
 
         try {
-            ps = DbConnection.getConnection().prepareStatement("INSERT INTO users(username, password)" + "VALUES('" + username + "', " + password + ")");
+            ps = DbConnection.getConnection().prepareStatement("INSERT INTO users(username, password)" + "VALUES('" + username + "', '" + password + "')");
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
