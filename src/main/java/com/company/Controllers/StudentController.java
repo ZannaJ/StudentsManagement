@@ -70,4 +70,27 @@ public class StudentController {
             return null;
         }
     }
+    public static void addStudentScore() {
+        System.out.println("Enter the student's id: ");
+        int id = scanner.nextInt();
+
+        System.out.println("Enter the mathematics score: ");
+        int mathScore = scanner.nextInt();
+
+        System.out.println("Enter the english score: ");
+        int englishScore = scanner.nextInt();
+
+
+
+        try {
+            ps = DbConnection.getConnection().prepareStatement("INSERT INTO scores (Mathematics, English, student_id) VALUES(" + mathScore + "," + englishScore + "," + id + ")");
+            ps.execute();
+            System.out.println("Successfully added score.");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        // Assignment
+        // Add methods to remove a students score, edit a students score and remove a student and edit student's details.
+    }
 }

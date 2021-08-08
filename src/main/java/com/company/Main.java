@@ -12,6 +12,9 @@ public class Main {
 //        System.out.println("The student is: " + StudentController.getStudentById().getName());
 
 //        System.out.println(5 > 7 ? "It's true" : "It's false");
-        System.out.println(Login.userSignUp() ? "Added a new user." : "Can't add a new user.");
+//        System.out.println(Login.userSignUp() ? "Added a new user." : Login.userSignUp());
+       System.out.println(Login.userLogin() ? "Sucessfully logged in" : "Failed to login in");
+
+//        StudentController.addStudentScore();
     }
 }
