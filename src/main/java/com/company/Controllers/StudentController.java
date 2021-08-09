@@ -33,9 +33,42 @@ public class StudentController {
             e.printStackTrace();
             return false;
         }
+    }
+    public static void editStudent() {
+            System.out.println("Enter the students id: ");
+            int studentId = scanner.nextInt();
 
+            System.out.println("name, age");
+            System.out.println("Enter the field you want to edit: ");
+            String field = scanner.next();
+
+            System.out.println("Enter the updated value: ");
+            String update = scanner.next();
+
+        try {
+            ps = DbConnection.getConnection().prepareStatement("UPDATE students SET " + field + " = " + update + " WHERE id = " + studentId);
+            ps.execute();
+            System.out.println("Successfully updated student. ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
     }
+    public static void deleteStudent() {
+        System.out.println("Enter student id: ");
+        int studentId = scanner.nextInt();
+
+        try {
+            ps = DbConnection.getConnection().prepareStatement("DELETE FROM scores WHERE student_id=" + studentId);
+            ps.execute();
+            ps = DbConnection.getConnection().prepareStatement("DELETE FROM students WHERE id=" + studentId);
+            ps.execute();
+            System.out.println("Successfully deleted");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
     public static Student getStudentById() {
 
         // Prompt the user to enter the id of the student they want to retrieve.
@@ -58,6 +91,7 @@ public class StudentController {
                 student.setId(studentId);
                 student.setName(name);
                 student.setAge(age);
+                System.out.println(studentId + "\t " + name + "\t " + age + "\t ");
 
             }
                 return student;
@@ -93,4 +127,41 @@ public class StudentController {
         // Assignment
         // Add methods to remove a students score, edit a students score and remove a student and edit student's details.
     }
+    public static void editScore() {
+        // Request for the data.
+        System.out.print("Enter the students id: ");
+        int studentId = scanner.nextInt();
+        System.out.println("Mathematics, English");
+        System.out.print("Enter the subject: ");
+        String subject = scanner.next();
+
+        System.out.print("Enter the updated score: ");
+        int update = scanner.nextInt();
+
+        try {
+            ps = DbConnection.getConnection().prepareStatement("UPDATE scores SET " + subject + " = " + update + " WHERE student_id = " + studentId);
+            ps.execute();
+            System.out.println("Successfully updated score. ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public static void deleteScore() {
+        // Request for the data.
+        System.out.print("Enter the students id: ");
+        int studentId = scanner.nextInt();
+        System.out.println("Mathematics, English");
+        System.out.print("Enter the subject: ");
+        String subject = scanner.next();
+
+
+        try {
+            ps = DbConnection.getConnection().prepareStatement("UPDATE scores SET " + subject + " = 0 WHERE student_id = " + studentId);
+            ps.execute();
+            System.out.println("Successfully updated score. ");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
